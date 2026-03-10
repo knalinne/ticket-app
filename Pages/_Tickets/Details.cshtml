@@ -1,0 +1,18 @@
+@page "{id:int}"
+@model TicketApp.Pages.Tickets.Details
+
+<h1>@Model.Ticket!.Title</h1>
+
+<dl>
+    <dt>Id</dt>
+    <dd>@Model.Ticket.Id</dd>
+
+    <dt>Statut</dt>
+    <dd>@Model.Ticket.Status</dd>
+
+    <dt>Créé le</dt>
+    <dd>@Model.Ticket.CreatedAt.ToString("dd/MM/yyyy HH:mm")</dd>
+
+    <dt>Mis à jour le</dt>
+    <dd>@Model.Ticket.UpdatedAt.ToString("dd/MM/yyyy HH:mm")</dd>
+</dl>

@@ -1,0 +1,22 @@
+@page
+@model TicketsIndexModel
+
+<table class="table ">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var ticket in Model.Tickets)
+    {
+        <tr>
+            <td>@ticket.Id</td>
+            <td>@ticket.Title</td>
+            <td>@ticket.Status</td>
+        </tr>
+    }
+    </tbody>
+</table>
