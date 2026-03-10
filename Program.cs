@@ -1,7 +1,10 @@
+using TicketApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ITicketService, TicketService>();
 
 var app = builder.Build();
 

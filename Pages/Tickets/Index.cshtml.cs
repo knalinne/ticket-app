@@ -1,28 +1,22 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TicketApp.Models;
+using TicketApp.Services;
 
 namespace TicketApp.Pages.Tickets;
 
 public class TicketsIndexModel: PageModel
 {
-    public List<Ticket> Tickets { get; set; }
-    
-    private readonly List<Ticket> _tickets = new()
+    private readonly ITicketService _ticketService;
+
+    public TicketsIndexModel(ITicketService ticketService)
     {
-        new(1, "Mettre en place l'authentification JWT", "Done", new DateTime(2026, 1, 5), new DateTime(2026, 1, 12)),
-        new(2, "Créer le module de gestion des utilisateurs", "In Progress", new DateTime(2026, 1, 8), new DateTime(2026, 3, 1)),
-        new(3, "Corriger le bug d'affichage sur mobile", "Open", new DateTime(2026, 2, 14), new DateTime(2026, 2, 14)),
-        new(4, "Optimiser les requêtes SQL lentes", "In Progress", new DateTime(2026, 2, 20), new DateTime(2026, 3, 5)),
-        new(5, "Rédiger la documentation de l'API REST", "Open", new DateTime(2026, 3, 1), new DateTime(2026, 3, 1)),
-        new(6, "Implémenter le système de notifications", "Done", new DateTime(2026, 1, 15), new DateTime(2026, 2, 3)),
-        new(7, "Migrer la base de données vers PostgreSQL", "Blocked", new DateTime(2026, 2, 10), new DateTime(2026, 3, 8)),
-        new(8, "Ajouter les tests unitaires sur le service de paiement", "Open", new DateTime(2026, 3, 7), new DateTime(2026, 3, 7)),
-        new(9, "Refactoriser le pipeline CI/CD GitLab", "Done", new DateTime(2026, 1, 22), new DateTime(2026, 2, 5)),
-        new(10, "Mettre à jour les dépendances NuGet obsolètes", "Blocked", new DateTime(2026, 3, 9), new DateTime(2026, 3, 10)),
-    };
+        _ticketService = ticketService;
+    }
+
+    public List<Ticket> Tickets { get; set; }
     
     public void OnGet()
     {
-        Tickets = _tickets;
+        Tickets = _ticketService.GetAllTickets();
     }
 }
