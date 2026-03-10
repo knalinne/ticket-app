@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\_Tickets\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\_Tickets\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

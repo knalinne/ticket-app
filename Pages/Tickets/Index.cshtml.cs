@@ -5,7 +5,6 @@ namespace TicketApp.Pages.Tickets;
 
 public class TicketsIndexModel: PageModel
 {
-    
     public List<Ticket> Tickets { get; set; }
     
     private readonly List<Ticket> _tickets = new()

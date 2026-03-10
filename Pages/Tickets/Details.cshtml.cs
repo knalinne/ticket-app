@@ -1,12 +1,13 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TicketApp.Models;
 
 namespace TicketApp.Pages.Tickets;
 
-public class Index : PageModel
+public class DetailsModel : PageModel
 {
-    public List<Ticket> Tickets { get; set; } = [];
-
+    public Ticket? Ticket { get; set; }
+    
     private readonly List<Ticket> _tickets = new()
     {
         new(1, "Mettre en place l'authentification JWT", "Done", new DateTime(2026, 1, 5), new DateTime(2026, 1, 12)),
@@ -18,11 +19,17 @@ public class Index : PageModel
         new(7, "Migrer la base de données vers PostgreSQL", "Blocked", new DateTime(2026, 2, 10), new DateTime(2026, 3, 8)),
         new(8, "Ajouter les tests unitaires sur le service de paiement", "Open", new DateTime(2026, 3, 7), new DateTime(2026, 3, 7)),
         new(9, "Refactoriser le pipeline CI/CD GitLab", "Done", new DateTime(2026, 1, 22), new DateTime(2026, 2, 5)),
-        new(10, "Mettre à jour les dépendances NuGet obsolètes", "In Progress", new DateTime(2026, 3, 9), new DateTime(2026, 3, 10)),
+        new(10, "Mettre à jour les dépendances NuGet obsolètes", "Blocked", new DateTime(2026, 3, 9), new DateTime(2026, 3, 10)),
     };
 
-    public void OnGet()
+    public ActionResult OnGet(int ticketId)
     {
-        Tickets = _tickets;
+        Ticket = _tickets.FirstOrDefault(x => x.Id == ticketId);
+        if (Ticket == null)
+        {
+            return NotFound();
+        }
+
+        return Page();
     }
 }
