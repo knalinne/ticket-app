@@ -1,0 +1,12 @@
+@page
+@model CreateTicket
+
+<h1>Création d'un ticket</h1>
+
+<form method="post">
+    <label asp-for="Ticket.Title"></label>
+    <input asp-for="Ticket.Title" />
+    <label asp-for="Ticket.Status"></label>
+    <input asp-for="Ticket.Status" />
+    <button class="btn btn-primary" type="submit">Créer</button>
+</form>

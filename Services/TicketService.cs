@@ -6,6 +6,8 @@ public interface ITicketService
 {
     public Ticket? GetTicketById(int id);
     public List<Ticket> GetAllTickets();
+    int GetNextId();
+    void CreateTicket(Ticket newTicket);
 }
 
 public class TicketService: ITicketService
@@ -33,5 +35,15 @@ public class TicketService: ITicketService
     public List<Ticket> GetAllTickets()
     {
         return _tickets;
+    }
+
+    public int GetNextId()
+    {
+        return _tickets.Select(t => t.Id).Max() + 1;
+    }
+
+    public void CreateTicket(Ticket newTicket)
+    {
+        _tickets.Add(newTicket);
     }
 }
